@@ -1,0 +1,4 @@
+edge.o: edge.cpp edge.hpp
+graph.o: graph.cpp graph.hpp edge.hpp mst.hpp union_find.hpp
+mst.o: mst.cpp mst.hpp edge.hpp
+union_find.o: union_find.cpp union_find.hpp edge.hpp

@@ -1,0 +1,88 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\title{CSCI 303, Homework 0 (Warm-up)}
+\author{Nathan Owen}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Problem One}
+
+\begin{flushleft}
+Prove by induction that $$\sum\limits_{i=1}^n i\cdot i! = (n+1)! - 1$$ for all $n \geq 1$. 
+\end{flushleft}
+\textit{Proof:}
+
+
+\begin{flushleft}
+\textbf{Base Case:} If $n=1$, then $(1\cdot 1!) = (1+1)!-1$ which simplifies to $1 = 1$
+\end{flushleft}
+
+
+
+\begin{flushleft}
+\textbf{Inductive hypothesis:} For all $n\geq 1,$ $\sum\limits_{i=1}^n i\cdot i! = (n+1)! - 1$.
+\end{flushleft}
+
+\begin{flushleft}
+\textbf{Inductive step:} Assume that the inductive hypothesis is true for $n$. We then need to prove that $\sum\limits_{i=1}^{n+1} i\cdot i! = ((n+1)+1)! - 1$. Because $\sum\limits_{i=1}^{n+1} i\cdot i!$ is $\sum\limits_{i=1}^n i\cdot i! + ((n+1)\cdot (n+1)!)$, the inductive hypothesis allows us to make the following substitution and then solve algebraically. 
+\begin{align}
+((n+1)+1)! - 1 &= \sum\limits_{i=1}^n i\cdot i! + ((n+1)\cdot (n+1)!)\\
+&= ((n+1)! -1) + ((n+1)\cdot (n+1)!)\\
+&=(n+1)! + (n+1)!(n+1) -1\\
+&=(n+1)!(1+(n+1))-1\\
+&=(n+1)!(n+2)-1\\
+(n+2)!-1 &= (n+2)!-1
+\end{align}
+
+\end{flushleft}
+
+\begin{flushleft}
+\textbf{Conclusion:} By the principle of induction, the inductive hypothesis is true for all $n \geq 1$
+\end{flushleft}
+
+
+
+
+\section{Problem Two}
+
+\begin{flushleft}
+Prove by induction that $$\sum\limits_{i=1}^n \frac{1}{i^2}\leq 2- \frac{1}{n}$$ for all $n \geq 1$. 
+\end{flushleft}
+\textit{Proof:}
+
+
+\begin{flushleft}
+\textbf{Base Case:} If $n=1$, then $\frac{1}{1^2}  \leq 2 - \frac{1}{1}$ which simplifies to $1 \leq 1$
+\end{flushleft}
+
+
+
+\begin{flushleft}
+\textbf{Inductive hypothesis:} For all $n\geq 1,$ $\sum\limits_{i=1}^n \frac{1}{i^2}\leq 2- \frac{1}{n}$.
+\end{flushleft}
+
+\begin{flushleft}
+\textbf{Inductive step:} Assume that the inductive hypothesis is true for $n$. We then need to prove that $\sum\limits_{i=1}^{n+1} \frac{1}{i^2}\leq 2- \frac{1}{n+1}$. Because $\sum\limits_{i=1}^{n+1} \frac{1}{i^2}$ is $\sum\limits_{i=1}^n \frac{1}{i^2} + \frac{1}{(n+1)^2}$, and by the induction hypothesis, $\sum\limits_{i=1}^n \frac{1}{i^2}\leq 2- \frac{1}{n}$, then if we substitute $\sum\limits_{i=1}^n \frac{1}{i^2}$ with $2- \frac{1}{n}$ and the resulting inequality is algebraically true, we know that $\sum\limits_{i=1}^{n+1} \frac{1}{i^2}\leq 2- \frac{1}{n+1}$ is also true because the original term is less than or equal to that which is being substituted. And so,
+\begin{align}
+(2- \frac{1}{n}) + \frac{1}{(n+1)^2} &\leq 2- \frac{1}{n+1}\\
+\frac{1}{(n+1)^2} - \frac{1}{n} &\leq -\frac{1}{n+1} \\
+\frac{1}{(n+1)^2} &\leq \frac{1}{n} -\frac{1}{n+1} \\
+1 &\leq \frac{(n+1)^2}{n} -(n+1)\\
+1 &\leq \frac{n^2+2n+1}{n}-n-1\\
+1 &\leq n+2+\frac{1}{n} -n-1\\
+1 &\leq 1+\frac{1}{n}
+\end{align}
+
+\end{flushleft}
+
+\begin{flushleft}
+\textbf{Conclusion:} By the principle of induction, the inductive hypothesis is true for all $n \geq 1$
+\end{flushleft}
+
+\begin{flushleft}
+
+\end{flushleft}
+
+
+\end{document}

@@ -1,0 +1,565 @@
+0. In both union_find0.cpp and union_find1.cpp, the 'test' function recieves an object of type Union_Find. In both cases, this class is the superclass for all other classes defined: Quick_Find, Quick_Union, Weighted_Quick_Union, and Weighted_Quick_Union_with_Path_Compression. In each of these subclasses, there are new implementations of Union_Find's  member functions 'find' or 'union', sometimes both. In union_find0.hpp, the 'find' and 'union' are declared as virtual in Union_Find. This allows each of Union_Find's subclasses to override these functions if needed, and manifests a virtual function table to keep track of overriden member functions. 
+
+This means that when a class that inherits from Union_Find is passed into the 'test' function as a Union_Find object, there is a virtual function table that the compiler uses to call the appropriate overriden member function when a call is made. 
+
+However, in union_find1.hpp, 'find' and 'union' are not declared as virtual in the Union_Find class, so when the subclasses are passed through the 'test' function as Union_Find objects, the compiler has no relevant virtual function table to reference and treats the passed object as a Union_Find class when a call is made - calling Union_Find's implementation of 'union' and 'find'.
+
+
+(Uses keywords Site and Component in union_find.hpp)
+(Does not override connected function in union_find.hpp in Quick_Find or Quick_Union)
+(Does not use Inline functions)
+1. 
+
+-------Test One--------------
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 100000
+
+
+Union (Quick find):
+  Elapsed time: 9131ms
+Connected (Quick find):
+  Elapsed time: 1ms
+-----------------------------------------------------------
+Union (Quick union):
+  Elapsed time: 1377ms
+Connected (Quick union):
+  Elapsed time: 16830ms
+-----------------------------------------------------------
+Union (Weighted quick union):
+  Elapsed time: 4ms
+Connected (Weighted quick union):
+  Elapsed time: 6ms
+-----------------------------------------------------------
+Union (Weighted quick union with path compression):
+  Elapsed time: 5ms
+Connected (Weighted quick union with path compression):
+  Elapsed time: 5ms
+
+
+-------Big Test--------------
+Enter the number of vertices (sites):    1000000
+Enter the number of edges (connections): 1000000
+Initialization:
+  Elapsed time: 83ms
+-----------------------------------------------------------
+Union (Weighted quick union):
+  Elapsed time: 165ms
+Connected (Weighted quick union):
+  Elapsed time: 152ms
+-----------------------------------------------------------
+Union (Weighted quick union with path compression):
+  Elapsed time: 191ms
+Connected (Weighted quick union with path compression):
+  Elapsed time: 150ms
+
+
+
+------Test with overriden inline functions----------
+
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 100000
+
+
+Union (Quick find):
+  Elapsed time: 9127ms
+Connected (Quick find):
+  Elapsed time: 1ms
+-----------------------------------------------------------
+Union (Quick union):
+  Elapsed time: 1375ms
+Connected (Quick union):
+  Elapsed time: 16803ms
+-----------------------------------------------------------
+Union (Weighted quick union):
+  Elapsed time: 4ms
+Connected (Weighted quick union):
+  Elapsed time: 6ms
+-----------------------------------------------------------
+Union (Weighted quick union with path compression):
+  Elapsed time: 5ms
+Connected (Weighted quick union with path compression):
+  Elapsed time: 5ms
+
+
+
+-------Test without normal test function-----------
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 100000
+
+
+Quick find union:
+  Elapsed time: 9126ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 1488ms
+Quick union connected:
+  Elapsed time: 17328ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 4ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 1ms
+
+
+------Big Test without normal test function-------------
+
+Enter the number of vertices (sites):    1000000
+Enter the number of edges (connections): 1000000
+
+
+Weighted quick union (without path compression) union:
+  Elapsed time: 147ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 119ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 195ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 83ms
+
+
+
+-------Test Two--------------
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 50000
+
+
+Union (Quick find):
+  Elapsed time: 3640ms
+Connected (Quick find):
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Union (Quick union):
+  Elapsed time: 1ms
+Connected (Quick union):
+  Elapsed time: 5ms
+-----------------------------------------------------------
+Union (Weighted quick union):
+  Elapsed time: 2ms
+Connected (Weighted quick union):
+  Elapsed time: 2ms
+-----------------------------------------------------------
+Union (Weighted quick union with path compression):
+  Elapsed time: 2ms
+Connected (Weighted quick union with path compression):
+  Elapsed time: 2ms
+
+
+-------Test Three------------
+Enter the number of vertices (sites):    50000
+Enter the number of edges (connections): 100000
+
+
+Union (Quick find):
+  Elapsed time: 2756ms
+Connected (Quick find):
+  Elapsed time: 1ms
+-----------------------------------------------------------
+Union (Quick union):
+  Elapsed time: 3163ms
+Connected (Quick union):
+  Elapsed time: 14915ms
+-----------------------------------------------------------
+Union (Weighted quick union):
+  Elapsed time: 4ms
+Connected (Weighted quick union):
+  Elapsed time: 6ms
+-----------------------------------------------------------
+Union (Weighted quick union with path compression):
+  Elapsed time: 4ms
+Connected (Weighted quick union with path compression):
+  Elapsed time: 4ms
+
+
+-------Test Four-------------
+Enter the number of vertices (sites):    200000
+Enter the number of edges (connections): 200000
+
+
+Union (Quick find):
+  Elapsed time: 36893ms
+Connected (Quick find):
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Union (Quick union):
+  Elapsed time: 6498ms
+Connected (Quick union):
+  Elapsed time: 79446ms
+-----------------------------------------------------------
+Union (Weighted quick union):
+  Elapsed time: 11ms
+Connected (Weighted quick union):
+  Elapsed time: 14ms
+-----------------------------------------------------------
+Union (Weighted quick union with path compression):
+  Elapsed time: 12ms
+Connected (Weighted quick union with path compression):
+  Elapsed time: 12ms
+
+
+(Does not use keywords Site and Component in union_find.hpp)
+(Overrides connected function in union_find.hpp in Quick_Find or Quick_Union - if this is changed, then calls Union_Find)
+(Uses Inline functions)
+2.
+
+-------Test One--------------
+
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 100000
+
+
+Quick find union:
+  Elapsed time: 9068ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 1489ms
+Quick union connected:
+  Elapsed time: 17355ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 4ms
+
+
+
+-------Normal Test Without Inlines-----------
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 100000
+
+
+Quick find union:
+  Elapsed time: 9062ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 1489ms
+Quick union connected:
+  Elapsed time: 17308ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 3ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 3ms
+
+
+
+-------Big Test--------------
+Enter the number of vertices (sites):    1000000
+Enter the number of edges (connections): 1000000
+
+
+Weighted quick union (without path compression) union:
+  Elapsed time: 145ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 118ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 141ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 115ms
+
+
+
+
+-------Big Test without Inlines--------------
+Enter the number of vertices (sites):    1000000
+Enter the number of edges (connections): 1000000
+Initialization:
+  Elapsed time: 83ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 144ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 116ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 143ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 117ms
+
+
+
+
+-------Really Big Test-----------------------
+Enter the number of vertices (sites):    10000000
+Enter the number of edges (connections): 10000000
+Initialization:
+  Elapsed time: 846ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 2168ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 2396ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 2163ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 2406ms
+
+
+
+
+-------Really Big Test without Inlines-------
+
+Enter the number of vertices (sites):    10000000
+Enter the number of edges (connections): 10000000
+Initialization:
+  Elapsed time: 829ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 2144ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 2369ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 2146ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 2376ms
+
+
+
+
+-------Test Without Site or Component Keywords--------
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 100000
+Initialization:
+  Elapsed time: 8ms
+-----------------------------------------------------------
+Quick find union:
+  Elapsed time: 9063ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 1488ms
+Quick union connected:
+  Elapsed time: 17347ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 4ms
+
+
+
+-------Test Two--------------
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 50000
+
+
+Quick find union:
+  Elapsed time: 3641ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 1ms
+Quick union connected:
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 1ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 1ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 1ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 1ms
+
+
+-------Test Three------------
+Enter the number of vertices (sites):    50000
+Enter the number of edges (connections): 100000
+
+
+Quick find union:
+  Elapsed time: 2728ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 3443ms
+Quick union connected:
+  Elapsed time: 15424ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 3ms
+
+
+
+-------Test Four-------------
+
+Enter the number of vertices (sites):    200000
+Enter the number of edges (connections): 200000
+Initialization:
+  Elapsed time: 17ms
+-----------------------------------------------------------
+Quick find union:
+  Elapsed time: 36575ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 6893ms
+Quick union connected:
+  Elapsed time: 80554ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 9ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 9ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 8ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 9ms
+
+
+3. 
+
+-------Test One--------------
+
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 100000
+
+
+Quick find union:
+  Elapsed time: 9134ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 1488ms
+Quick union connected:
+  Elapsed time: 17363ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 4ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 2ms
+
+-------Test Two--------------
+
+Enter the number of vertices (sites):    100000
+Enter the number of edges (connections): 50000
+
+
+Quick find union:
+  Elapsed time: 3639ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 1ms
+Quick union connected:
+  Elapsed time: 4ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 1ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 1ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 2ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 1ms
+
+-------Test Three------------
+
+Enter the number of vertices (sites):    50000
+Enter the number of edges (connections): 100000
+
+
+Quick find union:
+  Elapsed time: 2755ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 3441ms
+Quick union connected:
+  Elapsed time: 15417ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 3ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 3ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 2ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 1ms
+
+-------Test Four-------------
+
+Enter the number of vertices (sites):    200000
+Enter the number of edges (connections): 200000
+
+
+Quick find union:
+  Elapsed time: 36868ms
+Quick find connected:
+  Elapsed time: 0ms
+-----------------------------------------------------------
+Quick union union:
+  Elapsed time: 6803ms
+Quick union connected:
+  Elapsed time: 80599ms
+-----------------------------------------------------------
+Weighted quick union (without path compression) union:
+  Elapsed time: 8ms
+Weighted quick union (without path compression) connected:
+  Elapsed time: 9ms
+-----------------------------------------------------------
+Weighted quick union (with path compression) union:
+  Elapsed time: 9ms
+Weighted quick union (with path compression) connected:
+  Elapsed time: 5ms
+
+
+
+
+
+
+
+
+
